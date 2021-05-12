@@ -1,0 +1,5 @@
+The COnfigureServices in startup.cs is a DI container where one can globally inject classes to the application. No specific order to write this.
+The configure in startup.cs is to add middelware to HTTP request pipeline, there is specific order to write this as it involves entering and exiting from pipeline.
+The endpoint middleware is to map the routes as endpoints.(e.g. MapControllers middleware is to automaticall map all the http actions in controllers as endpoints)
+
+Asynchronous - Passes the task from main thread to another thread and continues when the task thread returns not blocking the initial main thread.
