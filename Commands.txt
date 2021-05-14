@@ -3,6 +3,8 @@ dotnet new sln //to create solution file
 dotnet new webapi -o API //to create an api project in API folder
 dotnet sln add API // to add API project to the created sln
 dotnet dev-certs https --trust  //to add https certificates
+dotnet run //to run the application
+dotnet watch run //to watch changes in application and restart automatically
 
 Extensions installed for C# support in VS Code
 - C#
@@ -20,3 +22,18 @@ Add Entity Framework
 - Add an initial migration by using dotnet ef tool (dotnet ef migrations add InitialCreate -o Data/Migrations)
 - Update and create the database by dotnet ef tool (dotnet ef database update)
 - Install sqlite extension to view the database created (type sqlite -> select datbase -> view database in sqlite explorer)
+
+Git Commands
+git init
+dotnet new gitignore //to add a predefined git ignore file for .net core project
+git add . //stage all changes
+git commit -m "message" //commit the changes
+git remote add origin https://github.com/axiz-left/Dating-app.git //add the remote repository
+git push -u origin master //push to remote repository
+
+Add Angular App
+npm install -g @angular/cli  //install angular cli
+ng new client //create a new client appsettings
+ng serve //to start angular application in internal server
+ng add ngx-bootstrap //to add bootstrap to project
+npm install font-awesome //to add font-awesome style

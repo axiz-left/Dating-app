@@ -1,0 +1,20 @@
+index.html is the single page from where angular is bootstrapped.
+it contains a app component selector called <app-root> which is defined in the file app.component.ts.
+The app.component.ts contains the Component decorator which specifies that this is a angular component and it has the selector name, the html and css template to be used for the selector.
+It also contains the app component class which can be used to aadd logic to send data to the template view.
+The app.module.ts is the file which angular uses to bootstrap the angular components. This wil be one in the application and it specifies the components that needs to be bootstrapped under the ngmodules decorator. It also contains references to adding external modules to the application and the start up compoentn to be bootstrapped when app launches.'
+The main.ts is the file is which the angular cli uses when starting the application to bootstrap the app module and then inturn load the components specified in it.
+
+tsconfig.json is the configuration file for typescript.
+
+angular.json is the app angular cli configuration file.
+
+To make HttpRequests in Angular import the module HttpClientModule from "@angular/common/http" and add the HttpClientModule to the imports section in app.module file
+Use the HttpClient class in app components to intiate http requests
+
+In Angular usually ngOnInit method is used to add any additonal intializations tasks after Angular has intialized data bound properties in the constructor. To use this method we need to implement/inherit the OnInit lifecycle event of Angular in the class.
+
+
+We can use interpolation to pass data from component to the view.(eg users object data in component.ts can be shown in view as {{users}})
+
+*ngFor - These are structural directives that modify the DOM in html in some way
