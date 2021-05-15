@@ -10,6 +10,8 @@ Extensions installed for C# support in VS Code
 - C#
 - C# extensions
 - Material Icon Theme (For visual studio like folder and file icons)
+When installing c#, click on the dialog to generate assets for build and debug, this will create a folder called .vscode in the project which will have json configuration files that help to attach a debugger.
+
 
 Add Entity Framework
 - Install Nuget Gallery extension
@@ -20,8 +22,16 @@ Add Entity Framework
 - Install dotnet ef tool from nuget site (dotnet tool install --global dotnet-ef --version 5.0.5)
 - Open Nuget Gallery and Install Microsoft.EntityFrameworkCore.Design
 - Add an initial migration by using dotnet ef tool (dotnet ef migrations add InitialCreate -o Data/Migrations)
-- Update and create the database by dotnet ef tool (dotnet ef database update)
+- Update or create a database by dotnet ef tool by looking at the migrations (dotnet ef database update)
 - Install sqlite extension to view the database created (type sqlite -> select datbase -> view database in sqlite explorer)
+
+For updating/adding tables to database using migration
+dotnet ef migrations add AddAdditonalUserFields
+dotnet ef database update
+
+For droping database
+dotnet ef database drop
+
 
 Git Commands
 git init

@@ -8,6 +8,7 @@ The main.ts is the file is which the angular cli uses when starting the applicat
 tsconfig.json is the configuration file for typescript.
 
 angular.json is the app angular cli configuration file.
+Set ssl as true, ssl certificate key and cert path under the section serve-> configurations in angular,json.
 
 To make HttpRequests in Angular import the module HttpClientModule from "@angular/common/http" and add the HttpClientModule to the imports section in app.module file
 Use the HttpClient class in app components to intiate http requests

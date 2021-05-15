@@ -2,3 +2,7 @@ The ConfigureServices in startup.cs is a DI container where one can globally inj
 The Configure in startup.cs is to add middelware to HTTP request pipeline, there is specific order to write this as it involves entering and exiting from pipeline.
 The endpoint middleware is to map the routes as endpoints.(e.g. MapControllers middleware is to automaticall map all the http actions in controllers as endpoints)
 Asynchronous - Passes the task from main thread to another thread and continues when the task thread returns not blocking the initial main thread.
+Data Transfer Objects (DTO) - are classes which contains only the required fields needed to pass data from view/api in an application.
+Entity Framework uses conventions, so if a field is named Id and type as integer , entity framework will automaticaly recognize it and mark it as incrementing Id field in database.
+Asp.net core identity uses camelcasing by default for UserName field , so declare it in camel casing otherwise we need to do quite a lot of refactoring to make it work.
+ApiController attrubute takes care of automatic model binding, we need not specify [From] etc in the method parameters. APICOntroller will auto assign the request parameters to the method parameters. Also if a data model or dto property has data annotations, ApiController will take care of data validation of properties during request.
