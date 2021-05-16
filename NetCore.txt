@@ -6,3 +6,40 @@ Data Transfer Objects (DTO) - are classes which contains only the required field
 Entity Framework uses conventions, so if a field is named Id and type as integer , entity framework will automaticaly recognize it and mark it as incrementing Id field in database.
 Asp.net core identity uses camelcasing by default for UserName field , so declare it in camel casing otherwise we need to do quite a lot of refactoring to make it work.
 ApiController attrubute takes care of automatic model binding, we need not specify [From] etc in the method parameters. APICOntroller will auto assign the request parameters to the method parameters. Also if a data model or dto property has data annotations, ApiController will take care of data validation of properties during request.
+When we are storing passwords in database it is a good idea to hash the password stored. But hashing only is not safe since the hash will be same for all the same passwords and if two users has a same password hacking one hash could reveal the other. SO instead of just using a hash , we use a salt key to encrypt the hash password. This saltkey is different for each user and creates different hashes for same password too.
+.NET core uses HmacSha512 encryption class to hash the password with a salt key.
+
+JWT Tokens - is used to authenticate to an API or Application
+Is an Industry standard for tokens
+Self contained and contains information about credentials,claims and other information
+Token is a logn string divided into 3 parts seperated by a period
+Header - Mentions the algorithm that encrypts the signature part of the token and type of the token which is jwt
+Payload - Contains the data for the token which can be user infor as well as claims/permissions as well as 3 time stamps, from when token can be used, expiry of token and when token was issued.
+Signature - This is the token signature which is encrypted by a secure key in the server with the algorithm tpe mentioned in header, this key never leaves the server. This can only decoded by the server.
+The header and payload can be easily obtained by decoding the token and not encrypted with a key.
+We cannot modify the token structure or data and expect it to validate since the signature wont be verified if it is modified and become invalid.
+
+How JWT authentication Works
+Client application will be sending a username and password to the server.
+Server will verify that and send a jwt token.
+client stores it in session or local storage.
+client then sends this token with every request to access any protected resource in server in an authentication request header.
+server will then take a look at the token and check whether the token is valid, the server which has assigned the token will have access to the private key stored on the server and it will be able to verify the token is valid.
+if valid it sends back response.
+
+Benefits of JWT
+No session to manage - JWT tokens are self conatined
+Portable - A single token can be used with multiple backends that share the same private key
+Nocookies required -mobile friendly
+Performance - once token is issued, no need to make any database request to verify users authentication
+
+Interface
+A contract between itself and a class that implements it that the class will implement all its properties, methods and events. It does not contain any implementation and only contains signatures
+
+Service Injection
+AddSingleton - instantiates when an app is created and destroyed when app is ended.
+AddScoped - This is scoped to the lifetime of the http request. Instantiates when a request is called and ends when request is completed. This is appropriate for web apps /http request.
+AddTransient - This is created aand destroyed as soon as the method is finished. Not right for Http
+
+SymmetricSecurityKey - Where one pair of key is used to sign and validate. USed by JWT.
+ASymmetricSecurityKey - where two pair of keys is used, one public and private is used to encrypt and decrypt. Used by https, ssl etc..

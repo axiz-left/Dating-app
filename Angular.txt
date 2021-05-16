@@ -2,8 +2,15 @@ index.html is the single page from where angular is bootstrapped.
 it contains a app component selector called <app-root> which is defined in the file app.component.ts.
 The app.component.ts contains the Component decorator which specifies that this is a angular component and it has the selector name, the html and css template to be used for the selector.
 It also contains the app component class which can be used to aadd logic to send data to the template view.
-The app.module.ts is the file which angular uses to bootstrap the angular components. This wil be one in the application and it specifies the components that needs to be bootstrapped under the ngmodules decorator. It also contains references to adding external modules to the application and the start up compoentn to be bootstrapped when app launches.'
+The app.module.ts is the file which angular uses to declare/add new componenets to the angular module and bootstrap the angular main component. This wil be one in the application and it specifies the components that needs to be added under the ngmodules decorator. It also contains references to adding external modules to the application and the start up compoenent to be bootstrapped when app launches.
 The main.ts is the file is which the angular cli uses when starting the application to bootstrap the app module and then inturn load the components specified in it.
+
+Components get destroyed when we move from one component to another.
+
+Angular Services are Singleton classes which can be injected as dependencies to components and it gets destroyed when we close the browser or move away from the application.
+Services has a decorator @Injectable, it also has an attribute 'ProvidedIn:root' which automatically adds the service to the app module providers list. 
+
+if a module is imported with forRoot() method in app.module, it means it loads all the services it needs in the root module
 
 tsconfig.json is the configuration file for typescript.
 
@@ -15,7 +22,28 @@ Use the HttpClient class in app components to intiate http requests
 
 In Angular usually ngOnInit method is used to add any additonal intializations tasks after Angular has intialized data bound properties in the constructor. To use this method we need to implement/inherit the OnInit lifecycle event of Angular in the class.
 
-
 We can use interpolation to pass data from component to the view.(eg users object data in component.ts can be shown in view as {{users}})
 
 *ngFor - These are structural directives that modify the DOM in html in some way
+something without a * prefixed is a directive
+
+Angular template forms are imported from FormsModule inside "@angular/forms". Add this to the imports sections in app.module file
+
+To make a form an angular form we need to give a template reference variable # followed by any name and assigned ngForm (eg <form #loginForm="ngForm" (ngSubmit)="login()" >).  the ngSubmit tell the component method name that sould be called when submitting the form. In the example it is login() method.
+
+For Two way binding an element needs to have the name attribute and the ngModel attribute(e.g. <input name="username" [(ngModel)] ="username" type="text" />). The [] brackets tells angular that the template is receiveing a data and the () brackets tells that data is send from template to the component.
+
+Observables are new standard for managing async data. They are lazy collection of multiple values over time and different from promises which provides only single value, are not lazy and cannot be canceled inbetween. The observables can also be used with javascript map, filter, reduce and other operators.
+To do something with observable they needs to be subscribed, otherwise it wont do anything.(e.g. http.get(url).subscribe(response => {data = response}, error => {log(error)}, () => {log(completed)});
+A '| async' after an observable in a view template automatically subscribes and unsubscribes it without using any subscribe code.
+By convention if naming an observable a $ sign is used at end(e.g. currentSource$)
+
+Interface in typescript is different than interface in c#. In typescript it refers to a type of something. (e.g. export interface user{ username: string; token:string;} means a type of user object)
+
+Parent to Child Component communication
+@Input() is used to decorate a variable in the child component and this variable will be used in the parent component to pass data to child component.
+In parent component template we need to specify this in [](e.g. <app-register [userFromHomeCompoent]="users"> where users is the model in parent component which has data)
+
+Child to Parent Communication.
+@Output is used to decorate the object variable of type EventEmitter in the child component.EventEmitter is which sends events from child to parent.(e.g. @Output cancelRegister = new EventEmitter();) then we need to define a method which defines what to emit in child component (e.g. cancel() { this.cancelRegister.emit(false));
+In the parent component we need to specify the output variable and then a parent component method which recieves the event(e.g. <app-register (cancelRegister)="cancelRegisterMode($event)"> where cancelRegisterMode is a method in parent component which accepts and event argument.)

@@ -47,3 +47,10 @@ ng new client //create a new client appsettings
 ng serve //to start angular application in internal server
 ng add ngx-bootstrap //to add bootstrap to project
 npm install font-awesome //to add font-awesome style
+
+npm uninstall @schematics/angular For installing/uninstalling angular schematics, if ngx-bootstrap didn't work
+npm install @schematics/angular For installing/uninstalling angular schematics, if ngx-bootstrap didn't work
+
+ng g c nav --skip-tests // to generate a new component named nav under nav directory, it creates the css, html,ts and add the component to app module
+
+ng g s account --skip-tests // to generate a new angular service. It creates a account.service class
