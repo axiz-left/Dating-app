@@ -16,6 +16,7 @@ tsconfig.json is the configuration file for typescript.
 
 angular.json is the app angular cli configuration file.
 Set ssl as true, ssl certificate key and cert path under the section serve-> configurations in angular,json.
+any changes in angular.json requires the angular app to be stopped and restarted.
 
 To make HttpRequests in Angular import the module HttpClientModule from "@angular/common/http" and add the HttpClientModule to the imports section in app.module file
 Use the HttpClient class in app components to intiate http requests
@@ -24,7 +25,7 @@ In Angular usually ngOnInit method is used to add any additonal intializations t
 
 We can use interpolation to pass data from component to the view.(eg users object data in component.ts can be shown in view as {{users}})
 
-*ngFor - These are structural directives that modify the DOM in html in some way
+*ngFor, *ngIf - These are structural directives that modify the DOM in html in some way
 something without a * prefixed is a directive
 
 Angular template forms are imported from FormsModule inside "@angular/forms". Add this to the imports sections in app.module file
@@ -47,3 +48,30 @@ In parent component template we need to specify this in [](e.g. <app-register [u
 Child to Parent Communication.
 @Output is used to decorate the object variable of type EventEmitter in the child component.EventEmitter is which sends events from child to parent.(e.g. @Output cancelRegister = new EventEmitter();) then we need to define a method which defines what to emit in child component (e.g. cancel() { this.cancelRegister.emit(false));
 In the parent component we need to specify the output variable and then a parent component method which recieves the event(e.g. <app-register (cancelRegister)="cancelRegisterMode($event)"> where cancelRegisterMode is a method in parent component which accepts and event argument.)
+
+Routing
+app-routing.module.ts (AppRoutingModule) is the module which angular uses for routing, this module is imported to app.module and created when we mark the option to add routing when creating angular project.
+
+We add the routes to navigate to in the app-routing.module.ts routes property.
+(e.g. consts routes:Routes = [ 
+{path:'', component: HomeComponent}//this is root path,
+ {path:'members', component:MemberListComponent},
+ {path:'members/:id', component: MemberDetailComponent},
+{path:'**', component:HomeComponent, pathMatch:'full'}]//this redirects any path that dont have a routes/ dont matches anything to home component)
+The path-matching strategy, one of 'prefix' or 'full'. Default is 'prefix'.
+By default, the router checks URL elements from the left to see if the URL matches a given path, and stops when there is a match. For example, '/team/11/user' matches 'team/:id'.
+The path-match strategy 'full' matches against the entire URL. It is important to do this when redirecting empty-path routes. Otherwise, because an empty path is a prefix of any URL, the router would apply the redirect even when navigating to the redirect destination, creating an endless loop.
+
+Add the selector <router-outlet></router-outlet> to the app.component.html to route to multiple pages based on url.
+To navigate to a particular component which clickin on a lin add the 'routerLink' attribute (e.g. <a class="nav-link" routerLink ="/members" routerLinkActive="active" />)
+The routerLinkActive highlights the link by addingan active class when the link is active.
+
+To add router in code to navigate, Inject the Router Component in the constructor and use the this.router.navigateByUrl("/members"); to navigate to a component.
+
+Angular Route Guard
+This is used to guard the routes against unauthorised access. It automatically subscribes to any observables added in it.
+To add guard to a route, add the 'canActivate;[AuthGuard]' attribute in the route. To add to multiple routes add a guard section in routing module and add the routes as children.
+
+ngContainer is used to encapsulate html which should be rendered to page only if the condition is true. This helps to hide html that users dont want to see. (e.g.  <ng-container  *ngIf="currentUser$ | async">)
+
+Angular pipes is used to format/alter the data (e.g. {{user.username | titelcase}} where titlecase is an angular pipe method to change username to titlecase)

@@ -25,10 +25,10 @@ namespace API.Services
                 new Claim(JwtRegisteredClaimNames.NameId,appUser.UserName)
             };
 
-            //Signing credentials used to sign the token
+            //Create signing credentials with the secret key and the HMAC alogrithm for encrypting/signing signatures
             var creds = new SigningCredentials(_key, SecurityAlgorithms.HmacSha512Signature);
 
-            //Token descriptor describing the payload and signing credentials to sign the token raw data
+            //Token descriptor containing the payload and signing credentials to encrypt/sign the signature
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(claims),
@@ -38,7 +38,7 @@ namespace API.Services
 
             var tokenHandler =  new JwtSecurityTokenHandler();
 
-            //Creates a JWT token from tokendescriptor by encrypting it using the signing credentials in token descriptor
+            //Creates a JWT token from tokendescriptor and uses the signing credentials to sign the signature
             var token = tokenHandler.CreateToken(tokenDescriptor);
             
             //Serializes the token to string and returns the token to calling method

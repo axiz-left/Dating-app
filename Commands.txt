@@ -11,7 +11,9 @@ Extensions installed for C# support in VS Code
 - C# extensions
 - Material Icon Theme (For visual studio like folder and file icons)
 When installing c#, click on the dialog to generate assets for build and debug, this will create a folder called .vscode in the project which will have json configuration files that help to attach a debugger.
-
+- Nuget Gallery -- to install libraries from nuget
+- Bracket Colorizer 2
+- SQLite -- to browse sqlite databases
 
 Add Entity Framework
 - Install Nuget Gallery extension
@@ -41,12 +43,19 @@ git commit -m "message" //commit the changes
 git remote add origin https://github.com/axiz-left/Dating-app.git //add the remote repository
 git push -u origin master //push to remote repository
 
+
+Extensions installed for angular support in vscode
+Angular Language Service
+Angular Snippets
+
+
 Add Angular App
 npm install -g @angular/cli  //install angular cli
 ng new client //create a new client appsettings
 ng serve //to start angular application in internal server
 ng add ngx-bootstrap //to add bootstrap to project
 npm install font-awesome //to add font-awesome style
+Add the css in angular.json styles section
 
 npm uninstall @schematics/angular For installing/uninstalling angular schematics, if ngx-bootstrap didn't work
 npm install @schematics/angular For installing/uninstalling angular schematics, if ngx-bootstrap didn't work
@@ -54,3 +63,13 @@ npm install @schematics/angular For installing/uninstalling angular schematics, 
 ng g c nav --skip-tests // to generate a new component named nav under nav directory, it creates the css, html,ts and add the component to app module
 
 ng g s account --skip-tests // to generate a new angular service. It creates a account.service class
+
+npm install ngx-toastr //to add toast notifications to angular app
+Add the css in angular.json styles section
+
+ng g guard auth --skip-tests // To add route guards, select first option
+
+npm install bootswatch //theme manager for bootstrap
+Add the corresponding theme css in angular.json styles section to globally chnage the apps theme.
+
+ng g m shared --flat // to create a new module, --flat tells not to create a folder
