@@ -64,14 +64,32 @@ The path-match strategy 'full' matches against the entire URL. It is important t
 
 Add the selector <router-outlet></router-outlet> to the app.component.html to route to multiple pages based on url.
 To navigate to a particular component which clickin on a lin add the 'routerLink' attribute (e.g. <a class="nav-link" routerLink ="/members" routerLinkActive="active" />)
-The routerLinkActive highlights the link by addingan active class when the link is active.
+The routerLinkActive highlights the link by adding an active class when the link is active.
 
 To add router in code to navigate, Inject the Router Component in the constructor and use the this.router.navigateByUrl("/members"); to navigate to a component.
+The router state is only accessible in the constructor.
 
 Angular Route Guard
 This is used to guard the routes against unauthorised access. It automatically subscribes to any observables added in it.
 To add guard to a route, add the 'canActivate;[AuthGuard]' attribute in the route. To add to multiple routes add a guard section in routing module and add the routes as children.
 
+NgContainer
 ngContainer is used to encapsulate html which should be rendered to page only if the condition is true. This helps to hide html that users dont want to see. (e.g.  <ng-container  *ngIf="currentUser$ | async">)
 
-Angular pipes is used to format/alter the data (e.g. {{user.username | titelcase}} where titlecase is an angular pipe method to change username to titlecase)
+Angular Pipes
+Angular pipes is used to format/alter the data (e.g. {{user.username | titelcase}} where titlecase is an angular pipe method to change username to titlecase).
+
+Shared Module
+Create a shared module to move the modules inside app.module if it is growing too much and reference that shared module in app module.
+
+Interceptors
+HttpInterceptor is used to intercept and handles all the requests and response in the application. 
+One can intercept the request and response by implementing an interceptor class.
+Most interceptors transform the outgoing request before passing it to the next interceptor in the chain, by calling next.handle(transformedReq). An interceptor may transform the response event stream as well, by applying additional RxJS operators on the stream returned by next.handle().
+
+The custom interceptor needs to be added to the app.module providers section
+providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
+  ],
+
+Note : To use the same instance of HttpInterceptors for the entire app, import the HttpClientModule only in your AppModule, and add the interceptors to the root application injector . If you import HttpClientModule multiple times across different modules (for example, in lazy loading modules), each import creates a new copy of the HttpClientModule, which overwrites the interceptors provided in the root module.
