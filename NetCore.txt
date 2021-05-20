@@ -56,3 +56,16 @@ AddTransient - This is created aand destroyed as soon as the method is finished.
 
 SymmetricSecurityKey - Where one pair of key is used to sign and validate. USed by JWT.
 ASymmetricSecurityKey - where two pair of keys is used, one public and private is used to encrypt and decrypt. Used by https, ssl etc..
+
+Repository Pattern
+Encapsulates the logic - decouples the application from the persistent framework
+Reduces duplicate query logic as all queries as centralized to methods and the methods can be used by consumers instead of writing the query logic
+Testability
+Allows to change ORm easily
+Disadvantage - 
+Abstraction of an Abstraction - Entity frameowrk is an abstarction of database and repository is abstraction of entity framework
+Each root entitiy should have its own repository which means more code
+need to implement unitofwork pattern to cnntrol transactions
+
+Automapper
+Map dtos to db objects

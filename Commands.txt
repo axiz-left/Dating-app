@@ -34,6 +34,9 @@ dotnet ef database update
 For droping database
 dotnet ef database drop
 
+Add AutoMapper
+- Open Nuget Gallery and Install AutoMapper.Extensions.Microsoft.DependencyInjection
+
 
 Git Commands
 git init
@@ -73,3 +76,7 @@ npm install bootswatch //theme manager for bootstrap
 Add the corresponding theme css in angular.json styles section to globally chnage the apps theme.
 
 ng g m shared --flat // to create a new module, --flat tells not to create a folder
+
+ng g interceptor error --skip-tests // to create an http interceptor class
+
+to import es2019 classes to angular add es2019 in tsconfig.json lib section.
