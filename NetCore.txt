@@ -69,3 +69,7 @@ need to implement unitofwork pattern to cnntrol transactions
 
 Automapper
 Map dtos to db objects
+
+
+Entity Framework Conventions
+-If a related table is there add the table object to the parent class and the parent object to related class. This creates a circular refernce but it makes the fkid not nullable and makees the data is fktable to be dleted along with parent table data.

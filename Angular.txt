@@ -38,6 +38,7 @@ Observables are new standard for managing async data. They are lazy collection o
 To do something with observable they needs to be subscribed, otherwise it wont do anything.(e.g. http.get(url).subscribe(response => {data = response}, error => {log(error)}, () => {log(completed)});
 A '| async' after an observable in a view template automatically subscribes and unsubscribes it without using any subscribe code.
 By convention if naming an observable a $ sign is used at end(e.g. currentSource$)
+if we do a pipe(take(1)).subscribe() to an observable, we are telling angular to unsubscribe after taking 1 item from observable.
 
 Interface in typescript is different than interface in c#. In typescript it refers to a type of something. (e.g. export interface user{ username: string; token:string;} means a type of user object)
 
@@ -86,6 +87,10 @@ Interceptors
 HttpInterceptor is used to intercept and handles all the requests and response in the application. 
 One can intercept the request and response by implementing an interceptor class.
 Most interceptors transform the outgoing request before passing it to the next interceptor in the chain, by calling next.handle(transformedReq). An interceptor may transform the response event stream as well, by applying additional RxJS operators on the stream returned by next.handle().
+
+Environment
+The environments files under the environment folder under src folder allow us to define constants that we use in different environments as development, production etc..
+
 
 The custom interceptor needs to be added to the app.module providers section
 providers: [

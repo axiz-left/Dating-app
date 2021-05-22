@@ -80,3 +80,5 @@ ng g m shared --flat // to create a new module, --flat tells not to create a fol
 ng g interceptor error --skip-tests // to create an http interceptor class
 
 to import es2019 classes to angular add es2019 in tsconfig.json lib section.
+
+npm install @kolkov/ngx-gallery // to add a gallery plugin to display photos

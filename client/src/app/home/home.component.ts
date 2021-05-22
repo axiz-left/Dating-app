@@ -13,20 +13,11 @@ users:any;
   constructor(private http:HttpClient) { }
 
   ngOnInit(): void {
-    this.getUsers();
+    
   }
 
   registerToggle(){
     this.registerMode = !this.registerMode;
-  }
-
-  getUsers() {
-    this.http.get("https://localhost:5001/api/users").subscribe(response => {
-      this.users = response;
-    }, error => { 
-      console.log(error);
-    }
-    )
   }
 
   cancelRegisterMode(event: boolean)
